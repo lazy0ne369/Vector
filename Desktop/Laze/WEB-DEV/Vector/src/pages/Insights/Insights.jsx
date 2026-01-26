@@ -1,4 +1,5 @@
 import { useTranslation } from '../../hooks/useTranslation';
+import { useScrollAnimation } from '../../hooks/useScrollAnimation';
 import {
   Lightbulb,
   TrendingUp,
@@ -11,11 +12,20 @@ import {
   ChevronRight,
   Bell,
   Filter,
+  Sparkles,
+  Activity,
+  Target,
 } from 'lucide-react';
 import './Insights.css';
 
 export default function Insights() {
   const { t } = useTranslation();
+  const [headerRef, headerVisible] = useScrollAnimation();
+  const [insightsRef, insightsVisible] = useScrollAnimation();
+  const [nudgesRef, nudgesVisible] = useScrollAnimation();
+  const [summariesRef, summariesVisible] = useScrollAnimation();
+  const [noteRef, noteVisible] = useScrollAnimation();
+
   const weeklyInsights = [
     {
       id: 1,
@@ -117,7 +127,7 @@ export default function Insights() {
     <div className="insights-page">
       <div className="container">
         {/* Header */}
-        <header className="insights-header">
+        <header ref={headerRef} className={`insights-header ${headerVisible ? 'animate-in' : ''}`}>
           <div className="header-info">
             <div className="header-icon">
               <Lightbulb size={28} />
@@ -125,6 +135,16 @@ export default function Insights() {
             <div>
               <h1>{t('insights.title')}</h1>
               <p>{t('insights.subtitle')}</p>
+            </div>
+          </div>
+          <div className="header-stats">
+            <div className="header-stat">
+              <Activity size={18} />
+              <span><strong>4</strong> New Insights</span>
+            </div>
+            <div className="header-stat">
+              <Target size={18} />
+              <span><strong>85%</strong> On Track</span>
             </div>
           </div>
           <div className="header-actions">
@@ -136,9 +156,12 @@ export default function Insights() {
         </header>
 
         {/* This Week's Insights */}
-        <section className="current-insights">
+        <section ref={insightsRef} className={`current-insights ${insightsVisible ? 'animate-in' : ''}`}>
           <div className="section-header">
-            <h2>{t('insights.thisWeek')}</h2>
+            <div className="section-title-group">
+              <Sparkles size={20} className="section-icon" />
+              <h2>{t('insights.thisWeek')}</h2>
+            </div>
             <button className="btn btn-secondary btn-sm">
               <Filter size={16} />
               {t('common.search')}
@@ -146,8 +169,12 @@ export default function Insights() {
           </div>
 
           <div className="insights-list">
-            {weeklyInsights.map((insight) => (
-              <div key={insight.id} className={`insight-card ${getSeverityClass(insight.severity)}`}>
+            {weeklyInsights.map((insight, index) => (
+              <div 
+                key={insight.id} 
+                className={`insight-card ${getSeverityClass(insight.severity)}`}
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
                 <div className="insight-icon">
                   <insight.icon size={20} />
                 </div>
@@ -175,12 +202,19 @@ export default function Insights() {
         </section>
 
         {/* Gentle Nudges */}
-        <section className="nudges-section">
-          <h2>Gentle Nudges</h2>
+        <section ref={nudgesRef} className={`nudges-section ${nudgesVisible ? 'animate-in' : ''}`}>
+          <div className="section-title-group">
+            <Sparkles size={20} className="section-icon" />
+            <h2>Gentle Nudges</h2>
+          </div>
           <p className="section-subtitle">Small suggestions to help you improve</p>
           <div className="nudges-list">
-            {nudges.map((nudge) => (
-              <div key={nudge.id} className="nudge-card">
+            {nudges.map((nudge, index) => (
+              <div 
+                key={nudge.id} 
+                className="nudge-card"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
                 <div className="nudge-icon">
                   <Lightbulb size={16} />
                 </div>
@@ -192,11 +226,18 @@ export default function Insights() {
         </section>
 
         {/* Previous Summaries */}
-        <section className="previous-summaries">
-          <h2>Previous Weeks</h2>
+        <section ref={summariesRef} className={`previous-summaries ${summariesVisible ? 'animate-in' : ''}`}>
+          <div className="section-title-group">
+            <Calendar size={20} className="section-icon" />
+            <h2>Previous Weeks</h2>
+          </div>
           <div className="summaries-list">
             {previousSummaries.map((summary, index) => (
-              <div key={index} className="summary-card">
+              <div 
+                key={index} 
+                className="summary-card"
+                style={{ animationDelay: `${index * 0.15}s` }}
+              >
                 <div className="summary-header">
                   <Calendar size={18} />
                   <h3>{summary.week}</h3>
@@ -213,8 +254,10 @@ export default function Insights() {
         </section>
 
         {/* Explainability Note */}
-        <section className="explainability-note">
-          <HelpCircle size={20} />
+        <section ref={noteRef} className={`explainability-note ${noteVisible ? 'animate-in' : ''}`}>
+          <div className="note-icon">
+            <HelpCircle size={24} />
+          </div>
           <div>
             <h3>How Insights Work</h3>
             <p>
