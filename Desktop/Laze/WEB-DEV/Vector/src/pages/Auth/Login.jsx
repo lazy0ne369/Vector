@@ -26,7 +26,7 @@ export default function Login() {
     try {
       await login(formData.email, formData.password);
       navigate('/dashboard');
-    } catch (err) {
+    } catch {
       // Error is handled by the hook
     }
   };

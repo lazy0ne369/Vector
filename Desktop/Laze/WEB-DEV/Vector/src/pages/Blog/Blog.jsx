@@ -1,13 +1,18 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from '../../hooks/useTranslation';
-import { BookOpen, Calendar, User, ArrowRight, Tag, Search } from 'lucide-react';
+import { useScrollAnimation } from '../../hooks/useScrollAnimation';
+import { BookOpen, Calendar, User, ArrowRight, Tag, Search, TrendingUp, Clock, Sparkles } from 'lucide-react';
 import './Blog.css';
 
 export default function Blog() {
   const { t } = useTranslation();
   const [activeCategory, setActiveCategory] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
+  const [heroRef, heroVisible] = useScrollAnimation();
+  const [featuredRef, featuredVisible] = useScrollAnimation();
+  const [listRef, listVisible] = useScrollAnimation();
+  const [newsletterRef, newsletterVisible] = useScrollAnimation();
 
   const categories = [
     { id: 'all', label: t('blog.allPosts') },
@@ -98,25 +103,52 @@ export default function Blog() {
   return (
     <div className="blog-page">
       {/* Hero */}
-      <section className="blog-hero">
+      <section ref={heroRef} className={`blog-hero ${heroVisible ? 'animate-in' : ''}`}>
         <div className="container">
+          <div className="blog-hero-badge">
+            <Sparkles size={14} />
+            <span>Student Resources</span>
+          </div>
           <div className="blog-hero-icon">
             <BookOpen size={48} />
           </div>
           <h1>{t('blog.title')}</h1>
           <p>{t('blog.subtitle')}</p>
+          <div className="blog-stats">
+            <div className="blog-stat">
+              <TrendingUp size={18} />
+              <span><strong>50+</strong> Articles</span>
+            </div>
+            <div className="blog-stat">
+              <Clock size={18} />
+              <span><strong>Weekly</strong> Updates</span>
+            </div>
+            <div className="blog-stat">
+              <User size={18} />
+              <span><strong>10k+</strong> Readers</span>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* Featured Posts */}
-      <section className="blog-featured section">
+      <section ref={featuredRef} className={`blog-featured section ${featuredVisible ? 'animate-in' : ''}`}>
         <div className="container">
-          <h2 className="section-title">{t('blog.featured')}</h2>
+          <div className="section-header">
+            <h2 className="section-title">{t('blog.featured')}</h2>
+            <p className="section-subtitle">Hand-picked articles to help you succeed</p>
+          </div>
           <div className="featured-grid">
-            {featuredPosts.map((post) => (
-              <Link to={`/blog/${post.id}`} key={post.id} className="featured-card">
+            {featuredPosts.map((post, index) => (
+              <Link 
+                to={`/blog/${post.id}`} 
+                key={post.id} 
+                className="featured-card"
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
                 <div className="featured-image">
                   <span className="post-emoji">{post.image}</span>
+                  <div className="featured-overlay"></div>
                 </div>
                 <div className="featured-content">
                   <span className="post-category">{post.category}</span>
@@ -124,7 +156,7 @@ export default function Blog() {
                   <p>{post.excerpt}</p>
                   <div className="post-meta">
                     <span><Calendar size={14} /> {post.date}</span>
-                    <span>{post.readTime}</span>
+                    <span><Clock size={14} /> {post.readTime}</span>
                   </div>
                 </div>
               </Link>
@@ -134,7 +166,7 @@ export default function Blog() {
       </section>
 
       {/* All Posts */}
-      <section className="blog-list section">
+      <section ref={listRef} className={`blog-list section ${listVisible ? 'animate-in' : ''}`}>
         <div className="container">
           <div className="blog-header">
             <h2 className="section-title">{t('blog.allPosts')}</h2>
@@ -164,8 +196,13 @@ export default function Blog() {
 
           {/* Posts Grid */}
           <div className="posts-grid">
-            {filteredPosts.map((post) => (
-              <Link to={`/blog/${post.id}`} key={post.id} className="post-card">
+            {filteredPosts.map((post, index) => (
+              <Link 
+                to={`/blog/${post.id}`} 
+                key={post.id} 
+                className="post-card"
+                style={{ animationDelay: `${index * 0.05}s` }}
+              >
                 <div className="post-image">
                   <span className="post-emoji">{post.image}</span>
                 </div>
@@ -195,9 +232,12 @@ export default function Blog() {
       </section>
 
       {/* Newsletter */}
-      <section className="blog-newsletter section">
+      <section ref={newsletterRef} className={`blog-newsletter section ${newsletterVisible ? 'animate-in' : ''}`}>
         <div className="container">
           <div className="newsletter-box">
+            <div className="newsletter-icon">
+              <Sparkles size={32} />
+            </div>
             <h2>{t('blog.newsletterTitle')}</h2>
             <p>{t('blog.newsletterDesc')}</p>
             <form className="newsletter-form" onSubmit={(e) => e.preventDefault()}>
@@ -206,6 +246,7 @@ export default function Blog() {
                 {t('blog.subscribe')}
               </button>
             </form>
+            <span className="newsletter-note">No spam, unsubscribe anytime</span>
           </div>
         </div>
       </section>

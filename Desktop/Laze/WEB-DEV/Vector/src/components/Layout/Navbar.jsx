@@ -33,7 +33,7 @@ export default function Navbar({ onSearchClick }) {
     { path: '/', labelKey: 'nav.home' },
     { path: '/about', labelKey: 'nav.about' },
     { path: '/how-it-works', labelKey: 'nav.howItWorks' },
-    { path: '/privacy', labelKey: 'nav.privacy' },
+    { path: '/contact', labelKey: 'nav.contact' },
   ];
 
   const authLinks = [

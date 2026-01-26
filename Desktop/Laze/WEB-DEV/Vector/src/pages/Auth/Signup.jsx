@@ -41,7 +41,7 @@ export default function Signup() {
     try {
       await register(formData.name, formData.email, formData.password, formData.phone || null);
       navigate('/dashboard');
-    } catch (err) {
+    } catch {
       // Error is handled by the hook
     }
   };
