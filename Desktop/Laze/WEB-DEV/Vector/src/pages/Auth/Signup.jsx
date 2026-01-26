@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { useTranslation } from '../../hooks/useTranslation';
-import { Compass, Mail, Lock, User, Eye, EyeOff, Phone, AlertCircle } from 'lucide-react';
+import { Compass, Mail, Lock, User, Eye, EyeOff, Phone, AlertCircle, ArrowLeft } from 'lucide-react';
 import './Auth.css';
 
 export default function Signup() {
@@ -10,6 +10,7 @@ export default function Signup() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(true);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -18,6 +19,12 @@ export default function Signup() {
     confirmPassword: '',
   });
   const [validationError, setValidationError] = useState(null);
+
+  // Reset animation state after mount
+  useEffect(() => {
+    const timer = setTimeout(() => setIsAnimating(false), 600);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleChange = (e) => {
     clearError();
@@ -51,9 +58,15 @@ export default function Signup() {
     alert('Google signup coming soon!');
   };
 
+  const handleSwitchToLogin = (e) => {
+    e.preventDefault();
+    setIsAnimating(true);
+    setTimeout(() => navigate('/login'), 300);
+  };
+
   return (
     <div className="auth-page">
-      <div className="auth-container">
+      <div className={`auth-container auth-container-signup ${isAnimating ? 'slide-in-right' : ''}`}>
         <div className="auth-card">
           {/* Logo */}
           <Link to="/" className="auth-logo">
@@ -189,7 +202,10 @@ export default function Signup() {
           </form>
 
           <p className="auth-footer">
-            {t('auth.hasAccount')} <Link to="/login">{t('auth.signIn')}</Link>
+            {t('auth.hasAccount')}{' '}
+            <a href="/login" onClick={handleSwitchToLogin} className="auth-switch-link">
+              <ArrowLeft size={14} /> {t('auth.signIn')}
+            </a>
           </p>
         </div>
       </div>

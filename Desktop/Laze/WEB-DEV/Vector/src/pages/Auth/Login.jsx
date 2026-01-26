@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../hooks/useAuth';
 import { useTranslation } from '../../hooks/useTranslation';
-import { Compass, Mail, Lock, Eye, EyeOff, AlertCircle } from 'lucide-react';
+import { Compass, Mail, Lock, Eye, EyeOff, AlertCircle, ArrowRight } from 'lucide-react';
 import './Auth.css';
 
 export default function Login() {
@@ -10,10 +10,17 @@ export default function Login() {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(true);
   const [formData, setFormData] = useState({
     email: '',
     password: '',
   });
+
+  // Reset animation state after mount
+  useEffect(() => {
+    const timer = setTimeout(() => setIsAnimating(false), 600);
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleChange = (e) => {
     clearError();
@@ -36,9 +43,15 @@ export default function Login() {
     alert('Google login coming soon!');
   };
 
+  const handleSwitchToSignup = (e) => {
+    e.preventDefault();
+    setIsAnimating(true);
+    setTimeout(() => navigate('/signup'), 300);
+  };
+
   return (
     <div className="auth-page">
-      <div className="auth-container">
+      <div className={`auth-container ${isAnimating ? 'slide-in-left' : ''}`}>
         <div className="auth-card">
           {/* Logo */}
           <Link to="/" className="auth-logo">
@@ -127,7 +140,10 @@ export default function Login() {
           </form>
 
           <p className="auth-footer">
-            {t('auth.noAccount')} <Link to="/signup">{t('nav.signup')}</Link>
+            {t('auth.noAccount')}{' '}
+            <a href="/signup" onClick={handleSwitchToSignup} className="auth-switch-link">
+              {t('nav.signup')} <ArrowRight size={14} />
+            </a>
           </p>
         </div>
       </div>
