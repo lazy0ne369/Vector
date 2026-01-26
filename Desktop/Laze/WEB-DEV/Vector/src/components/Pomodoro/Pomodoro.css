@@ -1,0 +1,303 @@
+/* Pomodoro Widget */
+.pomodoro-widget {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+  padding: var(--space-lg);
+}
+
+.pomodoro-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-md);
+}
+
+.pomodoro-title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  color: var(--color-primary);
+}
+
+.pomodoro-title h3 {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+}
+
+.pomodoro-actions {
+  display: flex;
+  gap: var(--space-xs);
+}
+
+.sound-btn,
+.settings-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  transition: all var(--transition-fast);
+}
+
+.sound-btn:hover,
+.settings-btn:hover {
+  background: var(--color-bg-secondary);
+  color: var(--color-text);
+}
+
+.sound-btn.muted {
+  color: var(--color-danger);
+}
+
+/* Mode Tabs */
+.mode-tabs {
+  display: flex;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-lg);
+}
+
+.mode-tab {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  padding: var(--space-sm);
+  font-size: var(--font-size-xs);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.mode-tab:hover {
+  color: var(--color-text);
+}
+
+.mode-tab.active {
+  background: var(--color-primary);
+  color: white;
+}
+
+.mode-tab.active[class*="shortBreak"],
+.mode-tab.active[class*="longBreak"] {
+  background: var(--color-success);
+}
+
+/* Timer Display */
+.timer-display {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  margin: 0 auto var(--space-lg);
+}
+
+.timer-ring {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.timer-ring .ring-bg {
+  fill: none;
+  stroke: var(--color-bg-secondary);
+  stroke-width: 4;
+}
+
+.timer-ring .ring-progress {
+  fill: none;
+  stroke: var(--color-primary);
+  stroke-width: 4;
+  stroke-linecap: round;
+  transition: stroke-dasharray 1s linear;
+}
+
+.timer-ring .ring-progress.shortBreak,
+.timer-ring .ring-progress.longBreak {
+  stroke: var(--color-success);
+}
+
+.timer-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.timer-text .time {
+  display: block;
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.timer-text .mode-label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-secondary);
+  margin-top: var(--space-xs);
+}
+
+/* Controls */
+.timer-controls {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-lg);
+}
+
+.control-btn {
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+}
+
+.control-btn.reset {
+  width: 40px;
+  height: 40px;
+  background: var(--color-bg-secondary);
+  color: var(--color-text-muted);
+}
+
+.control-btn.reset:hover {
+  background: var(--color-border);
+  color: var(--color-text);
+}
+
+.control-btn.main {
+  width: 56px;
+  height: 56px;
+  background: var(--color-primary);
+  color: white;
+  box-shadow: var(--shadow-md);
+}
+
+.control-btn.main:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-lg);
+}
+
+.control-btn.main.pause {
+  background: var(--color-warning);
+}
+
+.session-count {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+}
+
+/* Stats */
+.pomodoro-stats {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-xl);
+  padding-top: var(--space-md);
+  border-top: 1px solid var(--color-border);
+}
+
+.pomodoro-stats .stat {
+  text-align: center;
+}
+
+.pomodoro-stats .stat-value {
+  display: block;
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.pomodoro-stats .stat-label {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}
+
+/* Settings */
+.pomodoro-settings {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-md) 0;
+}
+
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.setting-row label {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.setting-row input {
+  width: 60px;
+  padding: var(--space-xs) var(--space-sm);
+  text-align: center;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+}
+
+/* Minimal Version */
+.pomodoro-minimal {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+}
+
+.mini-timer {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.mini-timer.focus {
+  color: var(--color-primary);
+}
+
+.mini-timer.shortBreak,
+.mini-timer.longBreak {
+  color: var(--color-success);
+}
+
+.mini-time {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.mini-btn {
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: var(--color-bg-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mini-sessions {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-muted);
+}

@@ -1,0 +1,235 @@
+.how-it-works {
+  overflow: hidden;
+}
+
+/* Hero */
+.hiw-hero {
+  padding: var(--space-3xl) 0;
+  background: var(--color-bg-secondary);
+  text-align: center;
+}
+
+.hiw-hero h1 {
+  font-size: var(--font-size-4xl);
+  font-weight: 700;
+  margin-bottom: var(--space-md);
+}
+
+.hiw-hero p {
+  font-size: var(--font-size-lg);
+  color: var(--color-text-secondary);
+}
+
+/* Steps */
+.hiw-steps {
+  background: var(--color-bg);
+}
+
+.hiw-steps .section-title {
+  margin-bottom: var(--space-3xl);
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+}
+
+.step-card {
+  text-align: center;
+  padding: var(--space-xl);
+}
+
+.step-number {
+  font-size: var(--font-size-4xl);
+  font-weight: 700;
+  color: var(--color-primary);
+  opacity: 0.2;
+  margin-bottom: var(--space-md);
+}
+
+.step-card h3 {
+  font-size: var(--font-size-lg);
+  margin-bottom: var(--space-sm);
+}
+
+.step-card p {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+}
+
+/* Modules */
+.hiw-modules .section-subtitle {
+  margin-bottom: var(--space-3xl);
+}
+
+.module-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3xl);
+  align-items: center;
+  padding: var(--space-3xl) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.module-section:last-child {
+  border-bottom: none;
+}
+
+.module-section.reverse {
+  direction: rtl;
+}
+
+.module-section.reverse > * {
+  direction: ltr;
+}
+
+.module-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-lg);
+}
+
+.module-icon {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.module-title {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  margin-bottom: var(--space-xs);
+}
+
+.module-subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.module-description {
+  color: var(--color-text-secondary);
+  line-height: 1.7;
+  margin-bottom: var(--space-lg);
+}
+
+.module-features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.module-features li {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  color: var(--color-text);
+}
+
+.module-features li svg {
+  color: var(--color-primary);
+  flex-shrink: 0;
+}
+
+.module-preview {
+  display: flex;
+  justify-content: center;
+}
+
+.preview-card {
+  background: var(--color-surface);
+  border: 2px solid;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  width: 100%;
+  max-width: 350px;
+  box-shadow: var(--shadow-lg);
+}
+
+.preview-header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  color: white;
+  font-weight: 600;
+}
+
+.preview-screens {
+  padding: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.preview-screen {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-bg-secondary);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+}
+
+.screen-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary);
+}
+
+/* CTA */
+.hiw-cta {
+  background: var(--color-bg-secondary);
+}
+
+.cta-box {
+  text-align: center;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.cta-box h2 {
+  font-size: var(--font-size-2xl);
+  margin-bottom: var(--space-md);
+}
+
+.cta-box p {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-xl);
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .steps-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .module-section,
+  .module-section.reverse {
+    grid-template-columns: 1fr;
+    direction: ltr;
+  }
+
+  .module-preview {
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .steps-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hiw-hero h1 {
+    font-size: var(--font-size-3xl);
+  }
+}
