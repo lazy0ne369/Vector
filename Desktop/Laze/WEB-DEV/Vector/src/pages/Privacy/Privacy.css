@@ -5,26 +5,32 @@
 /* Hero */
 .privacy-hero {
   padding: var(--space-3xl) 0;
-  background: var(--color-bg-secondary);
+  background: var(--gradient-hero);
   text-align: center;
 }
 
 .privacy-icon {
-  width: 80px;
-  height: 80px;
-  border-radius: var(--radius-xl);
-  background: var(--color-primary);
+  width: 88px;
+  height: 88px;
+  border-radius: var(--radius-2xl);
+  background: var(--gradient-primary);
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto var(--space-xl);
+  box-shadow: var(--shadow-primary);
 }
 
 .privacy-hero h1 {
   font-size: var(--font-size-4xl);
-  font-weight: 700;
+  font-weight: 800;
   margin-bottom: var(--space-md);
+  letter-spacing: -0.02em;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .privacy-hero p {
@@ -46,16 +52,17 @@
 }
 
 .principle-card {
-  background: var(--color-surface);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-2xl);
   padding: var(--space-xl);
   text-align: center;
-  transition: all var(--transition-base);
+  transition: all var(--transition-normal);
 }
 
 .principle-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-8px);
   box-shadow: var(--shadow-lg);
 }
 

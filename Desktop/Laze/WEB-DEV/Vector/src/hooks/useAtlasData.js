@@ -1,9 +1,14 @@
 import { useState, useEffect, useCallback } from "react";
-import { coursesAPI, deadlinesAPI, wellbeingAPI } from "../services/api";
+import {
+  coursesAPI,
+  deadlinesAPI,
+  wellbeingAPI,
+  healthAPI,
+} from "../services/api";
 import { authAPI } from "../services/api";
 
 // Configuration: Set to true when backend is running
-const USE_BACKEND = false;
+const USE_BACKEND = true;
 
 // Local Storage Keys
 const STORAGE_KEYS = {
@@ -36,15 +41,20 @@ export function useAtlasData() {
   const [deadlines, setDeadlines] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [backendAvailable, setBackendAvailable] = useState(USE_BACKEND);
+  const [backendAvailable, setBackendAvailable] = useState(false);
 
   // Check if backend is available
   useEffect(() => {
-    if (USE_BACKEND && authAPI.isAuthenticated()) {
-      setBackendAvailable(true);
-    } else {
-      setBackendAvailable(false);
-    }
+    const checkBackend = async () => {
+      if (USE_BACKEND && authAPI.isAuthenticated()) {
+        // Verify backend is actually reachable
+        const isReady = await healthAPI.isReady();
+        setBackendAvailable(isReady);
+      } else {
+        setBackendAvailable(false);
+      }
+    };
+    checkBackend();
   }, []);
 
   // Load initial data
@@ -60,8 +70,8 @@ export function useAtlasData() {
             coursesAPI.getAll(),
             deadlinesAPI.getAll(),
           ]);
-          setCourses(coursesData);
-          setDeadlines(deadlinesData);
+          setCourses(coursesData || []);
+          setDeadlines(deadlinesData || []);
         } else {
           // Load from localStorage
           setCourses(loadFromStorage(STORAGE_KEYS.COURSES, []));

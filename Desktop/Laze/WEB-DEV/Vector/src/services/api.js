@@ -349,10 +349,50 @@ export const wellbeingAPI = {
   },
 };
 
+// ============================================
+// Health Check API
+// ============================================
+export const healthAPI = {
+  async check() {
+    try {
+      const response = await fetch(`${API_BASE_URL}/health`);
+      return response.ok;
+    } catch {
+      return false;
+    }
+  },
+
+  async checkDatabase() {
+    try {
+      const response = await fetch(`${API_BASE_URL}/health/db`);
+      if (response.ok) {
+        return await response.json();
+      }
+      return { status: "DOWN", error: "Failed to connect" };
+    } catch (error) {
+      return { status: "DOWN", error: error.message };
+    }
+  },
+
+  async isReady() {
+    try {
+      const response = await fetch(`${API_BASE_URL}/health/ready`);
+      if (response.ok) {
+        const data = await response.json();
+        return data.status === "READY";
+      }
+      return false;
+    } catch {
+      return false;
+    }
+  },
+};
+
 // Export all APIs
 export default {
   auth: authAPI,
   courses: coursesAPI,
   deadlines: deadlinesAPI,
   wellbeing: wellbeingAPI,
+  health: healthAPI,
 };

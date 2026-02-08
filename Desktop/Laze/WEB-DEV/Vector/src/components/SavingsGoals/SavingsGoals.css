@@ -1,9 +1,15 @@
 /* Savings Goals */
 .savings-goals {
-  background: var(--color-surface);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-2xl);
   padding: var(--space-lg);
+  transition: all var(--transition-normal);
+}
+
+.savings-goals:hover {
+  box-shadow: var(--shadow-lg);
 }
 
 .savings-header {
@@ -22,7 +28,7 @@
 
 .savings-title h3 {
   font-size: var(--font-size-base);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 /* Summary */
@@ -31,8 +37,9 @@
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-md);
   padding: var(--space-md);
-  background: var(--color-bg-secondary);
-  border-radius: var(--radius-lg);
+  background: var(--glass-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
   margin-bottom: var(--space-lg);
 }
 
@@ -43,8 +50,11 @@
 .summary-value {
   display: block;
   font-size: var(--font-size-lg);
-  font-weight: 700;
-  color: var(--color-secondary);
+  font-weight: 800;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .summary-label {

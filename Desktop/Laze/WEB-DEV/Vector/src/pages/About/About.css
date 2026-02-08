@@ -5,7 +5,7 @@
 /* Hero */
 .about-hero {
   padding: var(--space-3xl) 0;
-  background: var(--color-bg-secondary);
+  background: var(--gradient-hero);
   text-align: center;
 }
 
@@ -15,21 +15,27 @@
 }
 
 .about-icon {
-  width: 80px;
-  height: 80px;
-  border-radius: var(--radius-xl);
-  background: var(--color-primary);
+  width: 88px;
+  height: 88px;
+  border-radius: var(--radius-2xl);
+  background: var(--gradient-primary);
   color: white;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto var(--space-xl);
+  box-shadow: var(--shadow-primary);
 }
 
 .about-title {
   font-size: var(--font-size-4xl);
-  font-weight: 700;
+  font-weight: 800;
   margin-bottom: var(--space-lg);
+  letter-spacing: -0.02em;
+  background: var(--gradient-text);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .about-subtitle {
@@ -48,6 +54,7 @@
 
 .story-text h2 {
   font-size: var(--font-size-2xl);
+  font-weight: 800;
   margin-bottom: var(--space-lg);
 }
 
@@ -79,7 +86,7 @@
   left: 0;
   width: 150px;
   height: 4px;
-  background: var(--color-primary);
+  background: var(--gradient-primary);
   transform: rotate(-30deg);
   transform-origin: left center;
 }

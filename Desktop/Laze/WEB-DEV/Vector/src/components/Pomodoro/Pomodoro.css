@@ -1,9 +1,15 @@
 /* Pomodoro Widget */
 .pomodoro-widget {
-  background: var(--color-surface);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-2xl);
   padding: var(--space-lg);
+  transition: all var(--transition-normal);
+}
+
+.pomodoro-widget:hover {
+  box-shadow: var(--shadow-lg);
 }
 
 .pomodoro-header {
@@ -22,7 +28,7 @@
 
 .pomodoro-title h3 {
   font-size: var(--font-size-base);
-  font-weight: 600;
+  font-weight: 700;
 }
 
 .pomodoro-actions {
@@ -32,20 +38,21 @@
 
 .sound-btn,
 .settings-btn {
-  width: 32px;
-  height: 32px;
-  border-radius: var(--radius-md);
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--color-text-muted);
+  background: var(--glass-bg);
   transition: all var(--transition-fast);
 }
 
 .sound-btn:hover,
 .settings-btn:hover {
-  background: var(--color-bg-secondary);
-  color: var(--color-text);
+  background: var(--color-primary);
+  color: white;
 }
 
 .sound-btn.muted {
@@ -57,6 +64,9 @@
   display: flex;
   gap: var(--space-xs);
   margin-bottom: var(--space-lg);
+  padding: var(--space-xs);
+  background: var(--glass-bg);
+  border-radius: var(--radius-xl);
 }
 
 .mode-tab {
@@ -67,10 +77,9 @@
   gap: var(--space-xs);
   padding: var(--space-sm);
   font-size: var(--font-size-xs);
-  font-weight: 500;
+  font-weight: 600;
   color: var(--color-text-secondary);
-  background: var(--color-bg-secondary);
-  border-radius: var(--radius-md);
+  border-radius: var(--radius-lg);
   transition: all var(--transition-fast);
 }
 

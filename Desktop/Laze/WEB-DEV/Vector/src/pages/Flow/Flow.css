@@ -1,6 +1,7 @@
 .flow-page {
   padding: var(--space-xl) 0 var(--space-3xl);
-  min-height: calc(100vh - 64px);
+  min-height: calc(100vh - 72px);
+  background: var(--gradient-hero);
 }
 
 /* Header */
@@ -20,19 +21,21 @@
 }
 
 .header-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: var(--radius-lg);
-  background: rgba(91, 141, 239, 0.1);
-  color: var(--color-secondary);
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-xl);
+  background: var(--gradient-primary);
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: var(--shadow-primary);
 }
 
 .flow-header h1 {
-  font-size: var(--font-size-2xl);
-  font-weight: 700;
+  font-size: var(--font-size-3xl);
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
 .flow-header p {
@@ -53,23 +56,30 @@
 }
 
 .stat-card {
-  background: var(--color-surface);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-2xl);
   padding: var(--space-lg);
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transition: all var(--transition-normal);
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
 }
 
 .stat-card.primary {
-  background: linear-gradient(135deg, var(--color-danger) 0%, #d32f2f 100%);
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
   color: white;
   border: none;
 }
 
 .stat-card.income {
-  background: linear-gradient(135deg, var(--color-success) 0%, #2e7d32 100%);
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
   color: white;
   border: none;
 }
@@ -82,7 +92,7 @@
 
 .stat-value {
   font-size: var(--font-size-2xl);
-  font-weight: 700;
+  font-weight: 800;
   margin-bottom: var(--space-sm);
 }
 

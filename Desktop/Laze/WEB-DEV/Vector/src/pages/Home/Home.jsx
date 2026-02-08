@@ -23,21 +23,21 @@ export default function Home() {
       title: 'Atlas',
       subtitle: t('home.atlasSubtitle'),
       description: t('home.atlasDescription'),
-      color: '#4F9D9A',
+      color: '#6366f1',
     },
     {
       icon: Wallet,
       title: 'Flow',
       subtitle: t('home.flowSubtitle'),
       description: t('home.flowDescription'),
-      color: '#5B8DEF',
+      color: '#0ea5e9',
     },
     {
       icon: Package,
       title: 'Kit',
       subtitle: t('home.kitSubtitle'),
       description: t('home.kitDescription'),
-      color: '#F4A261',
+      color: '#f97316',
     },
   ];
 
@@ -66,7 +66,7 @@ export default function Home() {
               <span>{t('home.badge')}</span>
             </div>
             <h1 className="hero-title">
-              {t('home.heroTitle1')} <span className="text-primary">{t('home.heroTitle2')}</span> {t('home.heroTitle3')} <span className="text-primary">{t('home.heroTitle4')}</span>
+              {t('home.heroTitle1')} <span className="gradient-text">{t('home.heroTitle2')}</span> {t('home.heroTitle3')} <span className="gradient-text">{t('home.heroTitle4')}</span>
             </h1>
             <p className="hero-subtitle">
               {t('home.heroSubtitle')}

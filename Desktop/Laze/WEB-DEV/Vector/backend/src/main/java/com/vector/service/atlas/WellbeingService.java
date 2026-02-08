@@ -64,7 +64,7 @@ public class WellbeingService {
     }
 
     public List<WellbeingCheckInDTO> getLatestCheckIns(Long userId, int limit) {
-        return wellbeingRepository.findLatestByUserId(userId, limit)
+        return wellbeingRepository.findLatestByUserId(userId, org.springframework.data.domain.PageRequest.of(0, limit))
                 .stream()
                 .map(WellbeingCheckInDTO::fromEntity)
                 .collect(Collectors.toList());

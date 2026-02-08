@@ -1,6 +1,7 @@
 .settings-page {
   padding: var(--space-xl) 0 var(--space-3xl);
-  min-height: calc(100vh - 64px);
+  min-height: calc(100vh - 72px);
+  background: var(--gradient-hero);
 }
 
 /* Header */
@@ -15,19 +16,21 @@
 }
 
 .header-icon {
-  width: 56px;
-  height: 56px;
-  border-radius: var(--radius-lg);
-  background: var(--color-bg-secondary);
-  color: var(--color-text);
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-xl);
+  background: var(--gradient-primary);
+  color: white;
   display: flex;
   align-items: center;
   justify-content: center;
+  box-shadow: var(--shadow-primary);
 }
 
 .settings-header h1 {
-  font-size: var(--font-size-2xl);
-  font-weight: 700;
+  font-size: var(--font-size-3xl);
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
 
 .settings-header p {
@@ -37,7 +40,7 @@
 /* Layout */
 .settings-layout {
   display: grid;
-  grid-template-columns: 250px 1fr;
+  grid-template-columns: 260px 1fr;
   gap: var(--space-xl);
 }
 
@@ -46,6 +49,11 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-xs);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-2xl);
+  padding: var(--space-md);
 }
 
 .nav-item {
@@ -54,8 +62,9 @@
   gap: var(--space-md);
   padding: var(--space-md);
   font-size: var(--font-size-sm);
+  font-weight: 500;
   color: var(--color-text-secondary);
-  border-radius: var(--radius-lg);
+  border-radius: var(--radius-xl);
   transition: all var(--transition-fast);
 }
 
@@ -65,8 +74,9 @@
 }
 
 .nav-item.active {
-  background: rgba(79, 157, 154, 0.1);
-  color: var(--color-primary);
+  background: var(--gradient-primary);
+  color: white;
+  box-shadow: var(--shadow-primary);
 }
 
 .nav-item span {
@@ -88,7 +98,7 @@
 }
 
 .nav-item.danger:hover {
-  background: rgba(239, 83, 80, 0.1);
+  background: rgba(239, 68, 68, 0.15);
 }
 
 .nav-divider {
@@ -99,15 +109,16 @@
 
 /* Content */
 .settings-content {
-  background: var(--color-surface);
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
   border: 1px solid var(--color-border);
-  border-radius: var(--radius-xl);
+  border-radius: var(--radius-2xl);
   padding: var(--space-xl);
 }
 
 .settings-section h2 {
   font-size: var(--font-size-xl);
-  font-weight: 600;
+  font-weight: 700;
   margin-bottom: var(--space-xs);
 }
 
